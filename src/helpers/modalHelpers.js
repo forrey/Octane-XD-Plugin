@@ -99,6 +99,35 @@ function buildTextField(container, label, id, placeholder) {
     container.appendChild(section);
 }
 
+function buildCheckbox({
+    container,
+    label = "checkbox", 
+    id, 
+    checked = false
+} = {}) {
+    const section = document.createElement('div');
+    section.className = "section";
+
+    //Make the container
+    const checkBoxContainer = document.createElement('label');
+    checkBoxContainer.className = "checkbox-container";
+
+    //Make the checkbox
+    const checkbox = document.createElement('input');
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.id = id;
+    checkbox.checked = checked;
+        
+    //Make the label
+    const checkBoxLabel = document.createElement('span');
+    checkBoxLabel.innerHTML = label;
+
+    checkBoxContainer.appendChild(checkbox);
+    checkBoxContainer.appendChild(checkBoxLabel);
+    section.appendChild(checkBoxContainer);
+    container.appendChild(section);
+}
+
 function buildInfoText(container, text) {
     const section = document.createElement('div');
     section.className = "section";
@@ -117,5 +146,6 @@ module.exports = {
     buildFooter,
     buildDropdown,
     buildTextField,
+    buildCheckbox,
     buildInfoText
 }

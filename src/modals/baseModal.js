@@ -88,6 +88,19 @@ label {
     padding-bottom: 4px;
     margin-bottom: 8px;
 }
+label.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+label.checkbox-container input {
+    margin-right: 0;
+    margin-left: 8px;
+}
+label.checkbox-container span {
+    margin-left: 2px;
+}
 select {
     height: 30px;
 }

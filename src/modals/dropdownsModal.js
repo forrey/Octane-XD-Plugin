@@ -1,4 +1,4 @@
-const {buildDropdown, buildTextField, buildInfoText} = require('../helpers/modalHelpers.js');
+const {buildDropdown, buildTextField, buildCheckbox, buildInfoText} = require('../helpers/modalHelpers.js');
 
 /* 
  * Here you'll define the footer buttons for your dialog 
@@ -36,6 +36,13 @@ async function dropdownMenuDialog(selection) {
     
     buildTextField(container, "Actions", "actions", "");
     
+    buildCheckbox({
+        container: container, 
+        label: "Give each action an icon placeholder", 
+        id: "iconPlaceholder", 
+        checked: false
+    });
+
     /* 
      * Done adding dialog content
     */
@@ -99,9 +106,10 @@ async function dropdownMenuDialog(selection) {
             */
                         
             let options = {
-                actions: dialog.querySelector('#actions').value
+                actions: dialog.querySelector('#actions').value,
+                iconPlaceholder: dialog.querySelector('#iconPlaceholder').checked
             }
-            
+
             const createDropdownMenu = require('../functions/dropdowns.js');
             createDropdownMenu(selection, options);
         }
