@@ -1,0 +1,41 @@
+{
+  "id": "7c4d2bb8",
+  "name": "Octane Plugins",
+  "version": "0.0.1",
+  "description": "Custom plugin for ALM Octane",
+  "summary": "Octane stuff",
+  "languages": ["en"],
+  "author": "Forrest McKinney",
+  "helpUrl": "https://mywebsite.com/help",
+  "host": {
+    "app": "XD",
+    "minVersion": "13.0"
+  },
+    "icons": [
+        {
+            "width": 24,
+            "height": 24,
+            "path": "img/plugin-icon.png"
+        },
+        {
+            "width": 48,
+            "height": 48,
+            "path": "img/plugin-icon@2x.png"
+        },
+        {
+            "width": 96,
+            "height": 96,
+            "path": "img/plugin-icon@3x.png"
+        }
+    ],
+  "uiEntryPoints": [
+    {
+        "type": "menu",
+        "label": "OCTANE COMPONENTS",
+        "commandId": "mainDialog",
+        "shortcut": {
+            "mac": "Cmd+Ctrl+O"
+        }
+    }
+  ]
+}
