@@ -6,6 +6,7 @@ function drawRect({
     height,
     fill = "#ffffff",
     stroke = "#dddddd",
+    borderRadius = 0,
     opacity = 1,
     name = "Rectangle"
 } = {}) {
@@ -13,6 +14,7 @@ function drawRect({
     newRect.width = width;
     newRect.height = height;
     newRect.fill = new Color(fill);
+    newRect.setAllCornerRadii(borderRadius);
     if(stroke != null) {  
         newRect.stroke = new Color(stroke);
     }

@@ -172,7 +172,12 @@ h1 img {
         dialog.appendChild(form);
         
         //Build the header
-        buildHeader(form, "Octane Components", false, '<img src="../../img/plugin-icon.png">');
+        buildHeader({
+            form: form, 
+            text: "Octane Components", 
+            back: false, 
+            icon: '<img src="../../img/plugin-icon.png">'
+        });
         
         //Add a container div
         const container = document.createElement('div');

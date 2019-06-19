@@ -1,8 +1,13 @@
 //const divider = '<hr />';
       
-function buildHeader(form, text, back, icon) {
+function buildHeader({
+    form, 
+    text, 
+    back = true, 
+    icon = ''
+} = {}) {
     const headerImg = (back === true ? `<img class="back-arrow" src="../../img/icons/back-arrow.png">` : '');    
-    const headerIcon = (icon === undefined ? '' : icon);
+    const headerIcon = icon;
     
     const headerText = `<span>${text}</span>`;
     const header = document.createElement('h1');
@@ -76,7 +81,12 @@ function buildDropdown({
     container.appendChild(section);
 }
 
-function buildTextField(container, label, id, placeholder) {
+function buildTextField({
+    container, 
+    label = "", 
+    id, 
+    placeholder = ""
+} = {}) {
     //Make a section
     const section = document.createElement('div');
     section.className = "section";

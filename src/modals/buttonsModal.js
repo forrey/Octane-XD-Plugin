@@ -56,7 +56,12 @@ async function buttonsDialog(selection) {
         ]
     });
 
-    buildTextField(container, "Button Text", "buttonText", "If blank, the label will simply be 'Button'");
+    buildTextField({
+        container: container, 
+        label: "Button Text", 
+        id: "buttonText", 
+        placeholder: "If blank, the label will simply be 'Button'"
+    });
     
     
     

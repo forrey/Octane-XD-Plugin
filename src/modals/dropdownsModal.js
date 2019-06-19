@@ -34,13 +34,20 @@ async function dropdownMenuDialog(selection) {
     
     buildInfoText(container, 'Enter text for each dropdown action, separated by commas.<span class="divider"></span>To add a divider line, enter "Divider" as a value<span class="divider"></span>For example "Save, Edit, Divider, Delete"');
     
-    buildTextField(container, "Actions", "actions", "");
-    
-    buildCheckbox({
+    buildDropdown({
+        container: container,
+        label: "Variation",
+        id: "dropdownVariation",
+        options: [
+            {value: 'text', text: 'Text only', selected: false},
+            {value: 'iconAndText', text: 'Icon + Text', selected: true}
+        ]
+    });
+
+    buildTextField({
         container: container, 
-        label: "Give each action an icon placeholder", 
-        id: "iconPlaceholder", 
-        checked: false
+        label: "Actions", 
+        id: "dropdownActions"
     });
 
     /* 
@@ -106,8 +113,8 @@ async function dropdownMenuDialog(selection) {
             */
                         
             let options = {
-                actions: dialog.querySelector('#actions').value,
-                iconPlaceholder: dialog.querySelector('#iconPlaceholder').checked
+                actions: dialog.querySelector('#dropdownActions').value,
+                variation: dialog.querySelector('#dropdownVariation').value
             }
 
             const createDropdownMenu = require('../functions/dropdowns.js');

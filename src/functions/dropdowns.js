@@ -5,15 +5,17 @@ const {metricHPE, metricHPEMoveFactor} = require('../constants/typography.js');
 const {defaultShadow, defaultShadowColor} = require('../constants/shadows.js');
 
 const minDropdownWidth = 140;
-const dropdownActionHeight = 22;
+const dropdownActionHeight = 24;
 const dropdownPadding = 8;
-const dividerHeight = 10;
-
+const dividerHeight = 4;
+const iconPlaceholderHeight = 12;
+const iconPlaceholderWidth = 12;
+const iconPlaceholderColor = "#dddddd";
 
 async function createDropdownMenu(selection, options) {   
     // First, we'll get the parent coordinates, so we can move shit around later
     var parentCoordinates = getParentCoordinates(selection);
-
+    
     //Take the input (a string of text) and convert it to an array
     const stringToArray = require('../helpers/utilities.js');
     
@@ -46,6 +48,7 @@ async function createDropdownMenu(selection, options) {
         action = action.trim();
         
         if(action.toLowerCase() === "divider") {
+
             //We'll send stuff to the drawDivider function to make life easier.
             var divider = drawDivider({
                 width: minDropdownWidth,
@@ -65,33 +68,83 @@ async function createDropdownMenu(selection, options) {
             
         } else if(action.length === 0) {
             yMoveIncrement = 0;
-        } else {  
+        } else {
+            
+            //Set an empty array. This will be used to add layers that will be grouped into an action
+            var actionLayersToGroup = [];
+
+            //Draw the background
             var actionBackground = drawRect({
                 width: minDropdownWidth,
                 height: dropdownActionHeight,
                 stroke: null,
                 name: "bg"
             });
-                        
+                       
+            //Draw the text
             var actionText = drawText({
                 textText: action
             });
             
+            //Add them to the scenegraph
             selection.insertionParent.addChild(actionBackground);
             selection.insertionParent.addChild(actionText);
-            
+
+            //Now we'll push them to our array for later grouping
+            actionLayersToGroup.push(actionBackground);
+            actionLayersToGroup.push(actionText);
+
+
+
+            //Now we need to set some positioning variables for the different dropdown variations
+            var moveTextX = dropdownPadding;
+            var actionIcon = null;
+
+            if (options.variation === "text") {
+                //If the user only wants text
+                var moveTextX = dropdownPadding;
+            } else if (options.variation === "iconAndText") {
+                //If the user wants icon and text
+                actionIcon = drawRect({
+                    width: iconPlaceholderWidth,
+                    height: iconPlaceholderHeight,
+                    fill: iconPlaceholderColor,
+                    borderRadius: 2,
+                    stroke: null,
+                    name: "icon-placeholder"
+                });
+
+                //Add the icon placeholder to the graph
+                selection.insertionParent.addChild(actionIcon);
+
+                //Add it to the array to be grouped
+                actionLayersToGroup.push(actionIcon);
+
+                //Update the moveTextX variable, so the text won't overlap with the icon placeholder
+                var moveTextX = iconPlaceholderWidth + (dropdownPadding * 2);
+
+                //Position the icon Placeholder in relation to the background
+                positionLayers({
+                    background: actionBackground,
+                    foreground: actionIcon,
+                    positionX: "left",
+                    positionY: "center",
+                    xAdjust: dropdownPadding
+                });
+            } 
+
+            //Position the text in relation to the background
             positionLayers({
                 background: actionBackground,
                 foreground: actionText,
                 positionX: "left",
                 positionY: "center",
-                xAdjust: dropdownPadding,
+                xAdjust: moveTextX,
                 yAdjust: 2
             });
             
-            
             //Group the lines together
-            createGroup(selection, [actionBackground, actionText], "action");
+            createGroup(selection, actionLayersToGroup, "action");
             
             // Increment the yMoveActionHeight
             yMoveIncrement = dropdownActionHeight;

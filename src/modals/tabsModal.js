@@ -34,8 +34,17 @@ async function tabsDialog(selection) {
     
     buildInfoText(container, 'Enter text for each tab, separated by commas.');
     
-    buildTextField(container, "Tabs", "tabs", "");
-    buildTextField(container, "Which tab should be selected?", "selectedTab", 'Enter 1 to select the first tab, 2 to select the second, etc...');
+    buildTextField({
+        container: container, 
+        label: "Tabs", 
+        id: "tabs"
+    });
+    buildTextField({
+        container: container, 
+        label: "Which tab should be selected?", 
+        id: "selectedTab", 
+        palceholder: 'Enter 1 to select the first tab, 2 to select the second, etc...'
+    });
     
     
     /* 
