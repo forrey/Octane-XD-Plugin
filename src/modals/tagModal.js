@@ -10,7 +10,7 @@ const buttons = [
     {label: 'Add', type: 'submit', id: 'submit', variant: 'cta'}
 ];
 
-async function dialogName(selection) {
+async function tagDialog(selection) {
     //Clear out any old trash still showing
     document.body.innerHTML = '';
     
@@ -20,10 +20,10 @@ async function dialogName(selection) {
     //Fill the dialog with the base structure
     const baseModal = require('./baseModal.js');
     dialog.innerHTML = await baseModal({
-        dialog: dialog, 
-        title: "Buttons", 
-        buttons: buttons
-    });
+       dialog: dialog, 
+       title: "Tags", 
+       buttons: buttons
+      });
     
     //Get the container element. This is where you'll put all the cool stuff
     const container = dialog.querySelector('.container');
@@ -36,6 +36,19 @@ async function dialogName(selection) {
      *
     */
     
+    buildTextField({
+       container: container,
+       label: "Tag text",
+       id: "tagText",
+       placeholder: 'If blank, the default text will be "tag"'
+    });
+
+    buildCheckbox({
+       container: container,
+       label: "Checked tag (blue background)",
+       id: "tagChecked",
+       checked: false
+    });
     
     
     
@@ -106,6 +119,15 @@ async function dialogName(selection) {
              * runFunction(options);
              * 
             */
+
+            
+            let options = {
+                text: dialog.querySelector('#tagText').value,
+                checked: dialog.querySelector('#tagChecked').checked
+            };
+
+            const createTag = require('../functions/tags.js');
+            createTag(selection, options);
         }
     } catch(err) {
         // system refused the dialog
@@ -116,4 +138,4 @@ async function dialogName(selection) {
 }
 
 
-module.exports = dialogName;
+module.exports = tagDialog;

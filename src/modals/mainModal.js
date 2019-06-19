@@ -22,6 +22,10 @@ async function showDialog(selection) {
             const createSearchField = require('./searchModal.js');
             await createSearchField(selection);
             break;
+        case 'createTag':
+            const createTag = require('./tagModal.js');
+            await createTag(selection);
+            break;
     }
     return true;
 }
@@ -224,6 +228,15 @@ h1 img {
                 id: 'rowSearch',
                 action: () => {
                     resolve('createSearchField')
+                }
+            },
+            {
+                name: 'tag',
+                label: 'Tag',
+                image: '../../img/icons/tags.png',
+                id: 'rowTag',
+                action: () => {
+                    resolve('createTag')
                 }
             }
         ];

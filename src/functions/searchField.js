@@ -82,6 +82,7 @@ async function createSearchField(selection, options) {
 
    createGroup(selection, layersToGroup, "search-field");
 
+   selection.width = 100;
    moveToParentCenter(selection, parentCoordinates);
 }
 
