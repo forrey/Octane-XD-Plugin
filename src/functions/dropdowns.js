@@ -6,8 +6,11 @@ const {defaultShadow, defaultShadowColor} = require('../constants/shadows.js');
 
 const minDropdownWidth = 140;
 const dropdownActionHeight = 24;
-const dropdownPadding = 8;
+const dropdownPadding = 4;
+const dropdownActionPadding = 4;
+
 const dividerHeight = 4;
+
 const iconPlaceholderHeight = 12;
 const iconPlaceholderWidth = 12;
 const iconPlaceholderColor = "#dddddd";
@@ -27,7 +30,7 @@ async function createDropdownMenu(selection, options) {
     
     // Now we'll make the background layer. Later we'll size it depending on the number and size of the actions.
     var dropdownBackground = drawRect({
-        width: minDropdownWidth,
+        width: minDropdownWidth + (dropdownPadding * 2),
         height: 0,
         stroke: null,
         name: "bg"
@@ -53,7 +56,7 @@ async function createDropdownMenu(selection, options) {
             var divider = drawDivider({
                 width: minDropdownWidth,
                 height: dividerHeight,
-                paddingX: dropdownPadding
+                paddingX: dropdownActionPadding
             });
             
             var dividerBackground = divider[0];
@@ -97,12 +100,12 @@ async function createDropdownMenu(selection, options) {
 
 
             //Now we need to set some positioning variables for the different dropdown variations
-            var moveTextX = dropdownPadding;
+            var moveTextX = dropdownActionPadding;
             var actionIcon = null;
 
             if (options.variation === "text") {
                 //If the user only wants text
-                var moveTextX = dropdownPadding;
+                var moveTextX = dropdownActionPadding;
             } else if (options.variation === "iconAndText") {
                 //If the user wants icon and text
                 actionIcon = drawRect({
@@ -121,7 +124,7 @@ async function createDropdownMenu(selection, options) {
                 actionLayersToGroup.push(actionIcon);
 
                 //Update the moveTextX variable, so the text won't overlap with the icon placeholder
-                var moveTextX = iconPlaceholderWidth + (dropdownPadding * 2);
+                var moveTextX = iconPlaceholderWidth + (dropdownActionPadding * 2);
 
                 //Position the icon Placeholder in relation to the background
                 positionLayers({
@@ -129,7 +132,7 @@ async function createDropdownMenu(selection, options) {
                     foreground: actionIcon,
                     positionX: "left",
                     positionY: "center",
-                    xAdjust: dropdownPadding
+                    xAdjust: dropdownActionPadding
                 });
             } 
 
@@ -164,8 +167,9 @@ async function createDropdownMenu(selection, options) {
     });
     
     // Now we need to properly size that background layer we made earlier
-    dropdownBackground.height = yMove;
-    
+    dropdownBackground.height = yMove + (dropdownPadding * 2);
+    dropdownBackground.moveInParentCoordinates(-dropdownPadding, -dropdownPadding);
+
     // Now we'll select everything we made and group it
     selection.items = layersToGroup;
     createGroup(selection, layersToGroup, "dropdown-menu");
