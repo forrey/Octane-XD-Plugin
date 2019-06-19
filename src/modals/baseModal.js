@@ -88,6 +88,11 @@ label {
     padding-bottom: 4px;
     margin-bottom: 8px;
 }
+label span {
+    font-size: 10pt;
+    text-transform: uppercase;
+    color: #777;
+}
 label.checkbox-container {
     display: flex;
     flex-direction: row;

@@ -18,6 +18,10 @@ async function showDialog(selection) {
             const createTabs = require('./tabsModal.js');
             await createTabs(selection);
             break;
+        case 'createSearchField':
+            const createSearchField = require('./searchModal.js');
+            await createSearchField(selection);
+            break;
     }
     return true;
 }
@@ -211,6 +215,15 @@ h1 img {
                 id: 'rowTabs',
                 action: () => {
                     resolve('createTabs')
+                }
+            },
+            {
+                name: 'search',
+                label: 'Search Field',
+                image: '../../img/icons/search.png',
+                id: 'rowSearch',
+                action: () => {
+                    resolve('createSearchField')
                 }
             }
         ];

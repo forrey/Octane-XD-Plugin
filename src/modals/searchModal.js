@@ -10,7 +10,7 @@ const buttons = [
     {label: 'Add', type: 'submit', id: 'submit', variant: 'cta'}
 ];
 
-async function tabsDialog(selection) {
+async function searchDialog(selection) {
     //Clear out any old trash still showing
     document.body.innerHTML = '';
     
@@ -19,7 +19,10 @@ async function tabsDialog(selection) {
     
     //Fill the dialog with the base structure
     const baseModal = require('./baseModal.js');
-    dialog.innerHTML = await baseModal({dialog: dialog, title: "Tabs", buttons: buttons});
+    dialog.innerHTML = await baseModal({
+       dialog: dialog, 
+       title: "Search Field", 
+       buttons: buttons});
     
     //Get the container element. This is where you'll put all the cool stuff
     const container = dialog.querySelector('.container');
@@ -32,20 +35,22 @@ async function tabsDialog(selection) {
      *
     */
     
-    buildInfoText(container, 'Enter text for each tab, separated by commas.');
-    
-    buildTextField({
-        container: container, 
-        label: "Tabs", 
-        id: "tabs"
-    });
-    buildTextField({
-        container: container, 
-        label: "Which tab should be selected?", 
-        id: "selectedTab", 
-        placeholder: 'Enter 1 to select the first tab, 2 to select the second, etc...'
+    buildDropdown({
+       container: container,
+       label: "Variation",
+       id: "searchVariation",
+       options: [
+          {value: 'fullBorder', text: 'Full Border', selected: true},
+          {value: 'bottomBorder', text: 'Bottom Border Only'}
+       ]
     });
     
+    buildTextField({
+       container: container,
+       label: "Placeholder",
+       id: "searchPlaceholder",
+       placeholder: 'Default placeholder will be "Search"'
+    });
     
     /* 
      * Done adding dialog content
@@ -114,14 +119,15 @@ async function tabsDialog(selection) {
              * runFunction(options);
              * 
             */
-            
-            let tabOptions = {
-                tabs: dialog.querySelector('#tabs').value,
-                selectedTab: dialog.querySelector('#selectedTab').value
+
+            let options = {
+               variation: dialog.querySelector('#searchVariation').value,
+               placeholder: dialog.querySelector('#searchPlaceholder').value
             }
-            
-            const createTabs = require('../functions/tabs.js');
-            createTabs(selection, tabOptions);
+
+            const createSearchField = require('../functions/searchField.js');
+            createSearchField(selection, options);
+
         }
     } catch(err) {
         // system refused the dialog
@@ -132,4 +138,4 @@ async function tabsDialog(selection) {
 }
 
 
-module.exports = tabsDialog;
+module.exports = searchDialog;

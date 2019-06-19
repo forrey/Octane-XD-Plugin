@@ -32,7 +32,6 @@ async function dropdownMenuDialog(selection) {
      *
     */
     
-    buildInfoText(container, 'Enter text for each dropdown action, separated by commas.<span class="divider"></span>To add a divider line, enter "Divider" as a value<span class="divider"></span>For example "Save, Edit, Divider, Delete"');
     
     buildDropdown({
         container: container,
@@ -50,6 +49,7 @@ async function dropdownMenuDialog(selection) {
         id: "dropdownActions"
     });
 
+    buildInfoText(container, 'Enter text for each dropdown action, separated by commas.<span class="divider"></span>To add a divider line, enter "Divider" as a value<span class="divider"></span>For example "Save, Edit, Divider, Delete"');
     /* 
      * Done adding dialog content
     */

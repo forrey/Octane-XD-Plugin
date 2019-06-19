@@ -1,4 +1,4 @@
-const {Rectangle, Text, Color, Line} = require("scenegraph");
+const {Rectangle, Text, Color, Line, Path} = require("scenegraph");
 const Command = require("commands");
 
 function drawRect({
@@ -60,6 +60,22 @@ function drawLine({
     
     return line;
 }
+
+/* Creates a path from a string of text (SVG style)
+ * {path} needs to be formatted for SVG.
+ * {color} pretty obvious
+*/
+function drawPath({
+    path,
+    color = "#555555"
+}) {
+    let newPath = new Path();
+    newPath.pathData = path;
+    newPath.fill = new Color(color);
+
+    return newPath;
+}
+
 
 /* Draws in measurements and returns an array with 2 layers (background rect & line)
  * In the parent function, you'll need to set the call to a variable and then access the layers
@@ -234,6 +250,7 @@ module.exports = {
     drawRect,
     drawText,
     drawLine,
+    drawPath,
     drawDivider,
     createGroup,
     getParentCoordinates,

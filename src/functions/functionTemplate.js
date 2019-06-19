@@ -5,6 +5,7 @@ const {metricHPE, metricHPEMoveFactor} = require('../constants/typography.js');
 
 
 async function doSomething(selection, options) {    
+    // First, we'll get the parent coordinates, so we can move shit around later
     var parentCoordinates = getParentCoordinates(selection);
     
 }
