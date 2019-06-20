@@ -1,4 +1,4 @@
-const {drawRect, drawText, createGroup, getParentCoordinates, moveToParentCenter} = require('../helpers/drawingHelpers.js');
+const {drawRect, drawEllipse, drawText, drawPath, createGroup, getParentCoordinates, positionLayers, moveToParentCenter} = require('../helpers/drawingHelpers.js');
 
 const {octaneBlue, darkBlue, white, black, negativeRed} = require('../constants/colors.js');
 const {metricHPE, metricHPEMoveFactor} = require('../constants/typography.js');

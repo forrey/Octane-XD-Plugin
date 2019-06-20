@@ -1,4 +1,4 @@
-const {Rectangle, Text, Color, Line, Path} = require("scenegraph");
+const {Rectangle, Ellipse, Text, Color, Line, Path} = require("scenegraph");
 const Command = require("commands");
 
 function drawRect({
@@ -22,6 +22,27 @@ function drawRect({
     newRect.name = name;
 
     return newRect;
+}
+
+function drawEllipse({
+    width,
+    height,
+    fill = "#ffffff",
+    stroke = "#dddddd",
+    opacity = 1,
+    name = "Ellipse"
+} = {}) {
+    let newEllipse = new Ellipse();
+    newEllipse.radiusX = width/2;
+    newEllipse.radiusY = height/2;
+    newEllipse.fill = new Color(fill);
+    if(stroke != null) {  
+        newEllipse.stroke = new Color(stroke);
+    }
+    newEllipse.opacity = opacity;
+    newEllipse.name = name;
+
+    return newEllipse;
 }
 
 function drawText({
@@ -252,6 +273,7 @@ function positionLayers({
 
 module.exports = {
     drawRect,
+    drawEllipse,
     drawText,
     drawLine,
     drawPath,

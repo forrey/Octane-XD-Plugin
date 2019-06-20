@@ -17,7 +17,7 @@ function baseDialog({
     buttons=[
         {label: 'Cancel', type: 'reset', id: 'cancel', variant: 'secondary'}
     ],
-    width = 500
+    width = 400
 } = {}) {
     let modalContent = `
 <style>

@@ -30,6 +30,10 @@ async function showDialog(selection) {
             const createAlert = require('./alertsModal.js');
             await createAlert(selection);
             break;
+        case 'createToggle':
+            const createToggle = require('./toggleModal.js');
+            await createToggle(selection);
+            break;
     }
     return true;
 }
@@ -131,7 +135,7 @@ input[type="checkbox"] {
 /*                  */
 
 form {
-    width: 500px;
+    width: 400px;
 }
 h1 img {
     width: 40px;
@@ -250,6 +254,15 @@ h1 img {
                 id: 'rowAlert',
                 action: () => {
                     resolve('createAlert')
+                }
+            },
+            {
+                name: 'toggle',
+                label: 'Toggle',
+                image: '../../img/icons/toggle.png',
+                id: 'rowToggle',
+                action: () => {
+                    resolve('createToggle')
                 }
             }
         ];
