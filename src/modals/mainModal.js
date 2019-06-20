@@ -162,8 +162,8 @@ h1 img {
     align-items: center;
 }
 .component-row .component-icon {
-    width: 100px;
-    height: 40px;
+    width: 140px;
+    height: 50px;
     border: #f9f9f9;
     display: flex;
     align-items: center;
