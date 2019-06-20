@@ -5,6 +5,9 @@ const octaneBlue = "#0079EF";
 //const darkBlue = new Color("#231ca5");
 const darkBlue = "#231ca5";
 
+const okGreen = "#00A989";
+const warningOrange = "#FFB24D";
+
 //const white = new Color("#FFFFFF");
 const white = "#ffffff";
 //const whiteF9 = new Color("#F9F9F9");
@@ -21,6 +24,8 @@ const negativeRed = "#E5034C";
 module.exports = {
     octaneBlue,
     darkBlue,
+    okGreen,
+    warningOrange,
     white,
     whiteF9,
     gray5,

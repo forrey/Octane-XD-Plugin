@@ -1,4 +1,5 @@
 const {drawRect, drawText, drawLine, drawPath, positionLayers, createGroup, getParentCoordinates, moveToParentCenter} = require('../helpers/drawingHelpers.js');
+const {searchIconPath} = require('../constants/icons.js');
 
 //const {octaneBlue, darkBlue, white, black, negativeRed} = require('../constants/colors.js');
 //const {metricHPE, metricHPEMoveFactor} = require('../constants/typography.js');
@@ -10,7 +11,6 @@ const searchFontSize = 13;
 const searchFontColor = "#aaaaaa";
 const searchBorder = "#dddddd";
 const textYAdjust = 3;
-const searchIconPath = "M6,1a5,5,0,1,0,5,5A5,5,0,0,0,6,1Zm0,9a4,4,0,1,1,4-4A4,4,0,0,1,6,10Zm6.5,1H12L10.71,9.71a6.143,6.143,0,0,1-1,1L11,12v.5L13.5,15,15,13.5Z";
 
 async function createSearchField(selection, options) {  
    // First, we'll get the parent coordinates, so we can move shit around later

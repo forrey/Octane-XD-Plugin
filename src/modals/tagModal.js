@@ -49,9 +49,7 @@ async function tagDialog(selection) {
        id: "tagChecked",
        checked: false
     });
-    
-    
-    
+        
     /* 
      * Done adding dialog content
     */

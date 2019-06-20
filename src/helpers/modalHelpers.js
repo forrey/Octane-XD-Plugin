@@ -109,6 +109,34 @@ function buildTextField({
     container.appendChild(section);
 }
 
+function buildTextArea({
+    container,
+    label = "",
+    id,
+    placeholder = ""
+} = {}) {
+    //Make a section
+    const section = document.createElement('div');
+    section.className = "section";
+    
+    //Make the container. a <label> element which will contain a <span> label and a <select> dropdown
+    const fieldContainer = document.createElement('label');
+    
+    //Make the field label span
+    const fieldLabel = document.createElement('span');
+    fieldLabel.innerHTML = label;
+
+    //Make the text area
+    const textArea = document.createElement('textarea');
+    textArea.id = id;
+    textArea.placeholder = placeholder;
+
+    fieldContainer.appendChild(fieldLabel);
+    fieldContainer.appendChild(textArea);
+    section.appendChild(fieldContainer);
+    container.appendChild(section);
+}
+
 function buildCheckbox({
     container,
     label = "checkbox", 
@@ -156,6 +184,7 @@ module.exports = {
     buildFooter,
     buildDropdown,
     buildTextField,
+    buildTextArea,
     buildCheckbox,
     buildInfoText
 }

@@ -26,6 +26,10 @@ async function showDialog(selection) {
             const createTag = require('./tagModal.js');
             await createTag(selection);
             break;
+        case 'createAlert':
+            const createAlert = require('./alertsModal.js');
+            await createAlert(selection);
+            break;
     }
     return true;
 }
@@ -238,8 +242,19 @@ h1 img {
                 action: () => {
                     resolve('createTag')
                 }
+            },
+            {
+                name: 'alert',
+                label: 'Alert',
+                image: '../../img/icons/alert.png',
+                id: 'rowAlert',
+                action: () => {
+                    resolve('createAlert')
+                }
             }
         ];
+
+        components.sort(sortComponents);
 
         
         //Now we'll build the rows
@@ -294,6 +309,20 @@ function createRow(components, dialog, form) {
     
     section.appendChild(componentsList);
     form.appendChild(section);
+}
+
+function sortComponents(a, b) {
+    const componentA = a.label.toUpperCase();
+    const componentB = b.label.toUpperCase();
+
+    let comparison = 0;
+    if (componentA > componentB) {
+        comparison = 1;
+    } else if (componentA < componentB) {
+        comparison = -1;
+    }
+
+    return comparison;
 }
 
 module.exports = showDialog;

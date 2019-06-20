@@ -31,7 +31,8 @@ function drawText({
     size = 13, 
     family = "MetricHPE", 
     style = "Regular", 
-    transform = "none"
+    transform = "none",
+    boxSize = null
 } = {}) {
     var text = new Text();
     text.text = textText;
@@ -41,7 +42,8 @@ function drawText({
     text.fontFamily = family;
     text.fontStyle = style;
     text.textTransform = transform;
-    
+    text.areaBox = boxSize;
+
     return text;
 }
 
@@ -125,6 +127,8 @@ function createGroup(selection, items, groupName) {
     //selection.items = [];
     
     selection.items[0].name = groupName;
+
+    return selection.items[0];
 }
 
 
