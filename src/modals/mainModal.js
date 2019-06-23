@@ -34,6 +34,14 @@ async function showDialog(selection) {
             const createToggle = require('./toggleModal.js');
             await createToggle(selection);
             break;
+        case 'createCheckbox':
+            const createCheckbox = require('./checkboxModal.js');
+            await createCheckbox(selection);
+            break;
+        case 'createRadioButton':
+            const createRadioButton = require('./radioButtonModal.js');
+            await createRadioButton(selection);
+            break;
     }
     return true;
 }
@@ -272,6 +280,24 @@ h1 img {
                 action: () => {
                     resolve('createToggle')
                 }
+            },
+            {
+                name: 'checkbox',
+                label: 'Checkbox',
+                image: '../../img/icons/checkbox.png',
+                id: 'rowCheckbox',
+                action: () => {
+                    resolve('createCheckbox')
+                }
+            },
+            {
+                name: 'radioButton',
+                label: 'Radio Button',
+                image: '../../img/icons/radio-button.png',
+                id: 'rowRadioButton',
+                action: () => {
+                    resolve('createRadioButton')
+                }
             }
         ];
 
@@ -288,7 +314,10 @@ h1 img {
         });
         
         //When submitting the form
-        form.onsubmit = () => dialog.close('ok');
+        form.onsubmit = () => {
+            dialog.close('ok');
+            dialog.remove();
+        }
 
         //When clicking the Cancel button
         var cancelButton = dialog.querySelector('#btnCancel');
@@ -301,7 +330,6 @@ h1 img {
         //add the dialog to the document
         document.appendChild(dialog);
         dialog.showModal().then(() => resolve()).catch(() => reject());
-
     });
 }
 
@@ -311,7 +339,6 @@ function filterRows(searchFieldId, filterContainerId) {
 
     Array.from(searchContainer.childNodes).forEach(function (row) {
         var textToSearch = row.textContent.trim();
-        console.log(textToSearch.search(new RegExp(searchString, "i")));
 
         if (textToSearch.search(new RegExp(searchString, "i")) < 0) {
             row.style.display = 'none';
