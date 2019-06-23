@@ -1,4 +1,4 @@
-const {buildHeader, buildFooter} = require('../helpers/modalHelpers.js');
+const {buildHeader, buildFooter, buildTextField} = require('../helpers/modalHelpers.js');
 
 async function showDialog(selection) {
     //The result will the choice of which component the user wants to add
@@ -199,7 +199,15 @@ h1 img {
         const container = document.createElement('div');
         container.className = "container";
         
-        
+        //Create a search field for searching the list of components
+        const searchField = document.createElement('input');
+        searchField.id = "searchField";
+        searchField.placeholder = "Search";
+        form.appendChild(searchField);
+
+        //Now add an event handler for searching
+        searchField.oninput = (e) => filterRows("#searchField", "#componentList");
+
         //List of components
         const components = [
             {
@@ -288,14 +296,30 @@ h1 img {
             dialog.close();
             reject();
         };
+        
 
         //add the dialog to the document
         document.appendChild(dialog);
         dialog.showModal().then(() => resolve()).catch(() => reject());
-        
+
     });
 }
 
+function filterRows(searchFieldId, filterContainerId) {
+    var searchString = document.querySelector(searchFieldId).value;
+    var searchContainer = document.querySelector(filterContainerId);
+
+    Array.from(searchContainer.childNodes).forEach(function (row) {
+        var textToSearch = row.textContent.trim();
+        console.log(textToSearch.search(new RegExp(searchString, "i")));
+
+        if (textToSearch.search(new RegExp(searchString, "i")) < 0) {
+            row.style.display = 'none';
+        } else {
+            row.style.display = 'flex';
+        };
+    });
+}
 
 function createRow(components, dialog, form) {
     const section = document.createElement('div');
@@ -303,7 +327,8 @@ function createRow(components, dialog, form) {
     
     const componentsList = document.createElement('div');
     componentsList.className = "component-list";
-    
+    componentsList.id = "componentList";
+
     components.forEach((component) => {
         let row = document.createElement('div');
         row.className = 'component-row';
