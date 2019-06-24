@@ -15,17 +15,17 @@
         {
             "width": 24,
             "height": 24,
-            "path": "img/plugin-icon.png"
+            "path": "assets/plugin-icons/icon.png"
         },
         {
             "width": 48,
             "height": 48,
-            "path": "img/plugin-icon@2x.png"
+            "path": "assets/plugin-icons/icon@2x.png"
         },
         {
             "width": 96,
             "height": 96,
-            "path": "img/plugin-icon@3x.png"
+            "path": "assets/plugin-icons/icon@3x.png"
         }
     ],
   "uiEntryPoints": [

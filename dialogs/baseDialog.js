@@ -1,10 +1,7 @@
-
-const Command = require("commands");
-
-//const {alert,error,prompt} = require("./lib/dialogs.js");
-//const showMainDialog = require('./src/modals/mainModal.js');
-
-async function mainDialog(selection) {
+async function baseDialog(selection, dialog) {
+    dialog.close();
+    dialog.remove();
+    
     document.body.innerHTML = '';
 
     let dialog = document.createElement('dialog');
@@ -155,6 +152,11 @@ async function mainDialog(selection) {
     const mainDialog = require('./dialogs/mainDialog');
     mainDialog(selection, dialog, form);
 
+    /*form.onsubmit = (e) => {
+        dialog.close('ok');
+        e.preventDefault();
+    }*/
+
     //Add the dialog to the document
     document.appendChild(dialog);
 
@@ -164,9 +166,4 @@ async function mainDialog(selection) {
     });
 }
 
-
-module.exports = {
-    commands: {
-        mainDialog
-    }
-}
+module.exports = baseDialog;
