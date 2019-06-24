@@ -25,16 +25,20 @@ async function mainDialog(selection, dialog, form) {
    components.sort(sortComponents);
    createComponentsList(dialog, selection, form, components);
 
-   buildFooter({
-       form: form,
-       buttons: ['Cancel']
-   });
-   
-   const cancelButton = document.querySelector('#btnCancel');
+   //Just for this file we need to build the footer manually becuase it's being an asshole for some reason
+   const footer = document.createElement('footer');
+   const cancelButton = document.createElement('button');
+   cancelButton.id = "btnCancel";
+   cancelButton.innerHTML = "Cancel";
+   cancelButton.type = "reset";
+   cancelButton.setAttribute('uxp-variant', "secondary");
+
    cancelButton.onclick = e => {
-       console.log('clicked');
-      dialog.close('reasonCanceled');
-   }
+       dialog.close('reasonCanceled');
+   };
+
+   footer.appendChild(cancelButton);
+   form.appendChild(footer);
 }
 
 function createComponentsList(dialog, selection, form, items) {
