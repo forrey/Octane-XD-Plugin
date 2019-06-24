@@ -25,16 +25,16 @@ async function mainDialog(selection, dialog, form) {
    components.sort(sortComponents);
    createComponentsList(dialog, selection, form, components);
 
-   
    buildFooter({
        form: form,
        buttons: ['Cancel']
    });
-
-   let cancelButton = document.querySelector(`#btnCancel`);
-   cancelButton.addEventListener("click", e => {
-       dialog.close('reasonCanceled');
-   });
+   
+   const cancelButton = document.querySelector('#btnCancel');
+   cancelButton.onclick = e => {
+       console.log('clicked');
+      dialog.close('reasonCanceled');
+   }
 }
 
 function createComponentsList(dialog, selection, form, items) {

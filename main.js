@@ -49,6 +49,7 @@ async function mainDialog(selection) {
                 max-height: 16px;
                 margin-right: 8px;
                 opacity: .6;
+                display: none;
             }
             h1 img.back-arrow:hover {
                 opacity: 1;

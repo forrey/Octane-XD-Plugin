@@ -105,10 +105,8 @@ async function buttonsDialog(selection, dialog, form) {
 
    var backArrow = document.querySelector('.back-arrow');
    backArrow.onclick = (e) => {
-      //const mainDialog = require('./mainDialog');
-      //mainDialog(dialog, selection, form);
-      const baseDialog = require('./baseDialog');
-      baseDialog(selection, dialog);
+      const mainDialog = require('./mainDialog');
+      mainDialog(dialog, selection, form);
    };
 
    const addButton = document.querySelector('#btnAdd');
