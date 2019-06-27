@@ -43,6 +43,11 @@ const componentsList = [
        label: 'Toggles',
        imagePath: '../assets/component-icons/toggles@2x.png',
        file: '../dialogs/togglesDialog.js'
+   },
+   {
+       label: 'Panels',
+       imagePath: '../assets/component-icons/panels@2x.png',
+       file: '../dialogs/panelsDialog.js'
    }
 ]
 

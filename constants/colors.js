@@ -7,6 +7,7 @@ const warningOrange = "#FFB24D";
 const white = "#ffffff";
 const whiteF9 = "#F9F9F9";
 
+const grayD = "#DDDDDD";
 const gray5 = "#555555";
 const black = "#000000";
 
@@ -19,6 +20,7 @@ module.exports = {
     warningOrange,
     white,
     whiteF9,
+    grayD,
     gray5,
     black,
     negativeRed
