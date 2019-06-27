@@ -1,5 +1,6 @@
 
 const Command = require("commands");
+const {octaneBlue} = require("./constants/colors");
 
 //const {alert,error,prompt} = require("./lib/dialogs.js");
 //const showMainDialog = require('./src/modals/mainModal.js');
@@ -64,7 +65,6 @@ async function mainDialog(selection) {
             }
             div.scrollable {
                 height: auto;
-                max-height: 400px;
                 overflow-y: scroll;
             }
             .section {
@@ -117,6 +117,7 @@ async function mainDialog(selection) {
             /*  Components List     */
             /*                      */
             .components-list {
+                max-height: 400px;
             }
             .components-list .component {
                 width: 100%;
@@ -141,6 +142,56 @@ async function mainDialog(selection) {
             .components-list .component img.component-image {
                 width: 140px;
                 margin-right: 8px;
+            }
+
+            .entities-list {
+                max-height: 600px;
+            }
+
+            .entities-list .entity {
+                width: 100%;
+                height: 40px;
+                padding: 8px 0;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                box-sizing: border-box;
+            }
+            .entities-list .entity:hover {
+                cursor: pointer;
+                background: #fcfcfc;
+            }
+            .entities-list .entity .entity-badge {
+                width: 24px;
+                height: 24px;
+                margin-left: 8px;
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 13pt;
+                color: #fff;
+                font-size: 11pt;
+                font-weight: 600;
+            }
+            .entities-list .entity .entity-name {
+                margin-left: 8px;
+                font-size: 13pt;
+                font-weight: 200;
+                color: #555;
+                flex-grow: 1;
+            }
+            .entities-list .entity input {
+                margin-right: 8px;
+                opacity: 0;
+            }
+
+            .entities-list .entity.selected {
+                background: #fff;
+            }
+
+            .entities-list .entity.selected input {
+                opacity: 1;
             }
         </style>
 

@@ -48,6 +48,11 @@ const componentsList = [
        label: 'Panels',
        imagePath: '../assets/component-icons/panels@2x.png',
        file: '../dialogs/panelsDialog.js'
+   },
+   {
+       label: 'Entity Icons',
+       imagePath: '../assets/component-icons/entity-icon@2x.png',
+       file: '../dialogs/entityIconsDialog.js'
    }
 ]
 
