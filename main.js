@@ -100,6 +100,10 @@ async function mainDialog(selection) {
             input[type="checkbox"] {
                 margin: 0;
             }
+            input[type="checkbox"]:checked {
+                /*background-color: ${octaneBlue};
+                color: #fff;*/
+            }
             .section .info-text {
                 background: #fafafa;
                 border-radius: 4px;
@@ -143,15 +147,13 @@ async function mainDialog(selection) {
                 width: 140px;
                 margin-right: 8px;
             }
-
             .entities-list {
-                max-height: 600px;
+                max-height: 250px;
             }
-
             .entities-list .entity {
-                width: 100%;
-                height: 40px;
+                height: 36px;
                 padding: 8px 0;
+                margin: 0 8px;
                 display: flex;
                 flex-direction: row;
                 align-items: center;

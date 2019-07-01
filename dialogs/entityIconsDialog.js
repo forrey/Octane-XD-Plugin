@@ -1,5 +1,8 @@
 const {buildHeader, buildFooter, buildSection, buildDropdown, buildTextInput, buildTextArea, buildCheckbox, buildInfoText} = require('../helpers/modalHelpers.js');
 const entities = require('../constants/entityTypes');
+const {getSiblings} = require('../helpers/utilities');
+
+let selectedEntity;
 
 async function entityIconsDialog(selection, dialog, form) {
    //Reset the dialog contents
@@ -36,12 +39,12 @@ async function entityIconsDialog(selection, dialog, form) {
       label: "Icon size",
       id: "iconSize",
       options: [
-         {value: "xs", text: "XS - 20px"},
-         {value: "small", text: "S - 22px"},
-         {value: "medium", text: "M - 24px", selected: true},
-         {value: "large", text: "L - 26px"},
-         {value: "xl", text: "XL - 28px"},
-         {value: "xxl", text: "XXL - 30px"},
+         {value: 20, text: "XS - 20px"},
+         {value: 22, text: "S - 22px"},
+         {value: 24, text: "M - 24px", selected: true},
+         {value: 26, text: "L - 26px"},
+         {value: 28, text: "XL - 28px"},
+         {value: 30, text: "XXL - 30px"},
       ]
    });
 
@@ -49,8 +52,22 @@ async function entityIconsDialog(selection, dialog, form) {
       form: form
    });
 
+
+   //Create a search field for searching the list of components
+   const searchField = document.createElement('input');
+   searchField.id = "searchField";
+   searchField.placeholder = "Search";
+   entitiesSection.appendChild(searchField);
+
    entities.sort(sortEntities);
    createEntitiesList(entitiesSection, entities);
+   
+   //Now add an event handler for searching
+   const {filterRows} = require("../helpers/utilities");
+   searchField.oninput = (e) => filterRows("#searchField", "#entitiesList");
+
+
+   
 
    /*
     * Are you done yet?! Finally. Let's move on.
@@ -74,11 +91,13 @@ async function entityIconsDialog(selection, dialog, form) {
       */
 
       let options = {
-         optionOne: document.querySelector('#').value 
+         type: selectedEntity,
+         style: document.querySelector("#iconStyle").value,
+         size: document.querySelector("#iconSize").value
       }
 
-      const functionName = require('../functions/functionName');
-      functionName(selection, options);
+      const createEntityIcon = require('../functions/createEntityIcon');
+      createEntityIcon(selection, options);
       
       /*
        * Oh thank god it's all over
@@ -128,31 +147,39 @@ function createEntitiesList(section, items) {
    entitiesList.id = "entitiesList";
    entitiesList.classList.add("entities-list", "scrollable");
 
-   console.log('building');
-
    items.forEach((item) => {
-       let entity = document.createElement('div');
-       entity.className = 'entity';
-       entity.innerHTML = `
-            <div class="entity-badge" style="background: ${item.color}"><span>${item.initials}</span></div>
-           <span class="entity-name">${item.name}</span>
-           <input type="checkbox" value=${item.type}>
-       `;
+      let entity = document.createElement('div');
+      entity.className = 'entity';
+      entity.innerHTML = `
+         <div class="entity-badge" style="background: ${item.color}"><span>${item.initials}</span></div>
+         <span class="entity-name">${item.name}</span>
+         <input type="checkbox" value=${item.type}>
+      `;
 
-       /*
-       *
-       * YOU'RE HERE
-       * Trying to make it so that on click, any currently selected entities will be unselected
-       * i.e. the siblings of the selected entity will be unselected.
-       * 
-       */
-       entity.onclick = () => {
-          entity.parentNode.querySelector("selected").classList.remove("selected");
-           entity.classList.add("selected");
-           entity.querySelector("input").checked = true;
-       };
+      /*
+      *
+      * YOU'RE HERE
+      * Trying to make it so that on click, any currently selected entities will be unselected
+      * i.e. the siblings of the selected entity will be unselected.
+      * 
+      */
+      entity.onclick = () => {
+         let siblings = getSiblings(entity);
 
-       entitiesList.appendChild(entity);
+         siblings.forEach((sibling) => {
+            if (sibling.classList.contains("selected")) {
+               sibling.classList.remove("selected");
+               sibling.querySelector("input").checked = false;
+            }
+         });
+
+         entity.classList.add("selected");
+         entity.querySelector("input").checked = true;
+
+         selectedEntity = item.type;
+      };
+
+      entitiesList.appendChild(entity);
    });
 
    section.appendChild(entitiesList);
