@@ -2,9 +2,6 @@
 const Command = require("commands");
 const {octaneBlue} = require("./constants/colors");
 
-//const {alert,error,prompt} = require("./lib/dialogs.js");
-//const showMainDialog = require('./src/modals/mainModal.js');
-
 async function mainDialog(selection) {
     document.body.innerHTML = '';
 

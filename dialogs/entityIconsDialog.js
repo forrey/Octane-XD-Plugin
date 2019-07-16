@@ -15,6 +15,7 @@ async function entityIconsDialog(selection, dialog, form) {
       back: true
    });
 
+
    /* 
     * Here you'll build all your other crappy stuff
    */

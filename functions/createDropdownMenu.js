@@ -1,7 +1,7 @@
 const {drawRect, drawEllipse, drawText, drawLine, drawPath} = require('../helpers/drawingHelpers');
 const {drawDivider} = require('../helpers/commonElements');
 const {createGroup, getParentBounds, moveToParentCenter, positionLayers} = require('../helpers/layerHelpers');
-const {} = require('../helpers/utilities');
+const {stringToArray} = require('../helpers/utilities');
 const {octaneBlue, darkBlue, okGreen, warningOrange, white, whiteF9, gray5, black, negativeRed} = require('../constants/colors');
 const {metricHPE, metricHPEMoveFacor} = require('../constants/typography');
 const {} = require('../constants/iconPaths');
@@ -19,17 +19,17 @@ const iconPlaceholderWidth = 12;
 const iconPlaceholderColor = "#dddddd";
 
 async function createDropdownMenu(selection, options) {
-   const parentBounds = getParentBounds(selection);
-
-   //Take the input (a string of text) and convert it to an array
-   const stringToArray = require('../helpers/utilities.js');
     
+
+   const parentBounds = getParentBounds(selection);
+   
    // Set the array of actions to a variable
    var actions = stringToArray(options.actions);
    
    // We'll make an empty array. This will later be used to select everything we've made.
    var layersToGroup = [];
    
+
    // Now we'll make the background layer. Later we'll size it depending on the number and size of the actions.
    var dropdownBackground = drawRect({
        width: minDropdownWidth + (dropdownPadding * 2),
@@ -48,6 +48,7 @@ async function createDropdownMenu(selection, options) {
    var yMove = 0;
    var yMoveIncrement = 0;
    
+
    actions.forEach((action) => {
        //Take out any white space
        action = action.trim();

@@ -8,10 +8,11 @@ async function somethingDialog(selection, dialog, form) {
    //First we build the header
    buildHeader({
       form: form,
-      text: "Dropdown Menus",
+      text: "Dropdown Menus lkjlkj",
       back: true
    });
 
+   
    /* 
     * Here you'll build all your other crappy stuff
    */
@@ -72,6 +73,7 @@ async function somethingDialog(selection, dialog, form) {
          variation: document.querySelector('#dropdownVariation').value
       }
 
+      
       const createDropdownMenu = require('../functions/createDropdownMenu');
       createDropdownMenu(selection, options);
       

@@ -9,6 +9,7 @@ const entityTypes = [
    {type: "gherkinTest", name: "Gherkin Test", initials: "GT", color: "#19A889"},
    {type: "manualRun", name: "Manual Run", initials: "MR", color: "#37CFFD"},
    {type: "testSuite", name: "Test Suite", initials: "TS", color: "#281D7F"},
+   {type: "suiteRun", name: "Suite Run", initials: "SR", color: "#5122A9"},
    {type: "automatedTest", name: "Automated Test", initials: "AT", color: "#992581"},
    {type: "automatedRun", name: "Automated Run", initials: "AR", color: "#B94EDF"},
    {type: "build", name: "Build", initials: "B", color: "#3CD5C3"},

@@ -4,6 +4,7 @@ const {createGroup, getParentBounds, moveToParentCenter, positionLayers} = requi
 const {octaneBlue, darkBlue, okGreen, warningOrange, white, whiteF9, gray5, black, negativeRed} = require('../constants/colors');
 const {metricHPE, metricHPEMoveFacor} = require('../constants/typography');
 const {} = require('../constants/iconPaths');
+const {stringToArray} = require('../helpers/utilities');
 
 const tabPaddingBottom = 12;
 const tabPaddingRight = 24;
@@ -15,7 +16,6 @@ async function createThing(selection, options) {
    const parentBounds = getParentBounds(selection);
 
    // Set the array of actions to a variable
-   const stringToArray = require('../helpers/utilities.js');
    var tabs = stringToArray(options.tabs);
    var selectedTab = (options.selectedTab === '' ? 1 : parseInt(options.selectedTab));
        
