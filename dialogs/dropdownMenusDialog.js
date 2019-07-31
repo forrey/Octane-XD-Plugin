@@ -8,7 +8,7 @@ async function somethingDialog(selection, dialog, form) {
    //First we build the header
    buildHeader({
       form: form,
-      text: "Dropdown Menus lkjlkj",
+      text: "Dropdown Menus",
       back: true
    });
 

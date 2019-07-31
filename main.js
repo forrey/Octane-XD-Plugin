@@ -69,15 +69,24 @@ async function mainDialog(selection) {
             }
             .section label {
                 margin-bottom: 8px;
+                text-align: left;
             }
             .section label span {
-                font-size: 12pt;
+                width: 100%;
+                font-size: 11pt;
                 text-transform: uppercase;
                 color: #777;
                 margin-bottom: 0;
             }
             .section label select {
+                width: 100%;
                 height: 30px;
+            }
+            .section label input {
+                width: 100%;
+            }
+            .section label textarea {
+                width: 100%;
             }
             .section label.checkbox-container {
                 display: flex;
@@ -86,16 +95,19 @@ async function mainDialog(selection) {
                 justify-content: flex-start;
             }
             .section label.checkbox-container input {
+                width: auto;
                 margin-right: 0;
                 margin-left: 8px;
             }
             .section label.checkbox-container span {
+                width: auto;
                 margin-left: 4px;
                 position: relative;
                 top: -1px;
             }
             input[type="checkbox"] {
-                margin: 0;
+                /*width: auto;*/
+                /*margin: 0;*/
             }
             input[type="checkbox"]:checked {
                 /*background-color: ${octaneBlue};
@@ -109,7 +121,7 @@ async function mainDialog(selection) {
                 border: 1px solid #ededed;
             }
             .section .info-text p {
-                font-size: 11pt;
+                font-size: 9pt;
                 color: #888;
                 line-height: 14pt;
                 margin-bottom: 4px;
